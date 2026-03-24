@@ -1,0 +1,10 @@
+# Środowisko wirtualne
+.venv/
+__pycache__/
+
+# Baza danych i surowe pliki (tego nie wrzucamy, skrypt sam to generuje!)
+data/
+
+# Pliki tymczasowe dbt
+modele_pogodowe/logs/
+modele_pogodowe/target/

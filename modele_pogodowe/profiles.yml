@@ -1,0 +1,6 @@
+modele_pogodowe:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: 'C:/Users/michal-pc/projekt-pogodowy/data/pogoda.duckdb'
