@@ -1,27 +1,31 @@
-# 🌤️ Weather Data Pipeline (ELT)
+## 🌤️ Weather Data Pipeline (ELT)
+This project is a fully automated ELT data pipeline built using the Modern Data Stack. Instead of using heavy cloud tools, this project focuses on being lightweight and fast. It uses a "Medallion" architecture (Bronze -> Silver -> Gold) powered by DuckDB and dbt.
 
-Ten projekt to w pełni zautomatyzowany rurociąg danych (pipeline) w architekturze ELT, zbudowany w oparciu o **Modern Data Stack**. Zamiast ciężkich rozwiązań chmurowych, projekt stawia na lekkość, szybkość i architekturę "Medalionową" (Bronze -> Silver -> Gold) z wykorzystaniem DuckDB i dbt.
+## 🛠️ Architecture & Tech Stack
+* **Extract (Python + API):** Downloads historical weather data for Krakow from the free Open-Meteo API and saves it as a raw JSON file (Bronze Layer).
+* **Load (DuckDB):** Loads the raw JSON file directly into DuckDB, a fast analytical database.
+* **Transform (dbt - Data Build Tool):** * `stg_pogoda` (Silver Layer): Flattens the nested JSON data into a clean, hour-by-hour table.
+  * `gold_statystyki_miesieczne` (Gold Layer): Aggregates the data into monthly summaries (max/min temperature, total rain) ready for BI dashboards.
 
-## 🛠️ Architektura i Technologie
-* **Extract (Python + API):** Pobieranie historycznych danych pogodowych dla Krakowa z darmowego API Open-Meteo i zapis do surowego pliku JSON (Warstwa Bronze).
-* **Load (DuckDB):** Załadowanie surowego pliku JSON bezpośrednio do nowoczesnej, analitycznej bazy danych DuckDB.
-* **Transform (dbt - Data Build Tool):** * `stg_pogoda` (Warstwa Silver): Rozpakowanie (unnest) zagnieżdżonego JSON-a na płaską tabelę ułożoną godzina po godzinie.
-  * `gold_statystyki_miesieczne` (Warstwa Gold): Agregacja danych do poziomu miesięcznych podsumowań (max/min temperatura, suma opadów), gotowych pod dashboardy BI.
+## 🚀 How to Run It
 
-## 🚀 Jak to uruchomić?
-
-1. Sklonuj repozytorium i stwórz środowisko wirtualne:
+1. Clone the repository and create a virtual environment:
 ```bash
 python -m venv .venv
 .\.venv\Scripts\activate
 pip install -r requirements.txt
+```
 
-2. Pobierz dane z API i załaduj do bazy DuckDB:
+2. Download data from the API and load it into DuckDB:
 
+```bash
 python extract_data.py
 python load_data.py
+```
 
-3. Uruchom transformacje dbt:
+3. Run the dbt transformations:
 
+```bash
 cd modele_pogodowe
 dbt run
+```
