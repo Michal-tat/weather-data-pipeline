@@ -1,4 +1,5 @@
 ## 🌤️ Weather Data Pipeline (ELT)
+!This project was mainly done by ai!
 This project is a fully automated ELT data pipeline built using the Modern Data Stack. Instead of using heavy cloud tools, this project focuses on being lightweight and fast. It uses a "Medallion" architecture (Bronze -> Silver -> Gold) powered by DuckDB and dbt.
 
 ## 🛠️ Architecture & Tech Stack
